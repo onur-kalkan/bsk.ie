@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+  
+  <title>Redirecting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="background-color:#121230;">
+  <h2 style="color:#e0f5f5;"> Redirecting...</h2>
+  <script>
+  (function () {
+    const path = window.location.pathname || '';
+    const raw = path.replace(/^\/+/, '').replace(/\/+$/, '');
+
+    // Helper: validate a single DNS label
+    function isValidLabel(label) {
+      // 1-63 chars, alnum or hyphen, not starting/ending with hyphen
+      return /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(label);
+    }
+
+    // Helper: validate a handle consisting of labels separated by single dots
+    function isValidDotName(name) {
+      if (!name || name.length > 253) return false;
+      if (name.startsWith('.') || name.endsWith('.')) return false;
+      if (name.includes('..')) return false;
+      const labels = name.split('.');
+      return labels.every(isValidLabel);
+    }
+
+    // Render a friendly message instead of a silent fail
+    function showMessage(msg) {
+      document.body.style.color = '#fff';
+      document.body.innerHTML = '<h2>' + msg + '</h2>';
+    }
+
+    if (raw === '') {
+      showMessage('Ooppsy What was that?');
+      return;
+    }
+
+    // Lowercase for normalization (DNS-style)
+    const name = raw.toLowerCase();
+
+    // Case 1: already a full handle ending in .bsky.social
+    if (name.endsWith('.bsky.social')) {
+      if (isValidDotName(name)) {
+        window.location.href = 'https://bsky.app/profile/' + encodeURIComponent(name);
+      } else {
+        showMessage('Invalid handle format.');
+      }
+      return;
+    }
+
+    // Case 2: single-label username (no dot) -> append .bsky.social
+    if (!name.includes('.')) {
+      if (isValidLabel(name)) {
+        const handle = name + '.bsky.social';
+        window.location.href = 'https://bsky.app/profile/' + encodeURIComponent(handle);
+      } else {
+        showMessage('Invalid username.');
+      }
+      return;
+    }
+
+    // Case 3: multi-label input with dots not ending in .bsky.social
+    // Policy choice:
+    // - Lenient: accept any valid dot-name as a full handle
+    // Choose one. Below is "strict":
+    if (isValidDotName(name)) {
+  window.location.href = 'https://bsky.app/profile/' + encodeURIComponent(name);
+} else {
+  showMessage('Invalid handle format.');
+}
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSK.ie - Bluesky URL Shortening</title>
+    <style>
+        /* Reset styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: "Courier New", Courier, monospace; /* Use Courier font */
+        }
+
+        /* Full-screen container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center */
+            align-items: center;    /* Horizontally center */
+            height: 100%;
+            background: linear-gradient(to bottom, #1e5799, #7db9e8); /* Gradient background */
+        }
+
+        /* Logo styling */
+        .logo img {
+            width: 25vw; /* Adjust logo size */
+            margin-bottom: 20px;
+        }
+
+        /* Title styling */
+        .title {
+            font-size: 48px; /* Larger font for title */
+            color: #ffffff; /* White text color */
+            margin-bottom: 20px;
+        }
+
+        /* Text styling */
+        .content p {
+            margin: 15px 0;
+            font-size: 24px; /* Make text larger */
+            color: #ffffff; /* White text color */
+        }
+
+        .content .username-section {
+            font-size: 24px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content .username-section span.bsk-part {
+            font-size: 28px; /* Make bsk.ie/ slightly larger */
+            font-weight: bold;
+        }
+
+        .content .username-section span.username-part {
+            background-color: DarkSlateBlue; /* White background for username */
+            font-weight: bold;
+            color: #Snow;           /* Black text for username */
+            padding: 5px 5px;
+            border-radius: 8px;       /* Less rounded rectangle effect */
+            margin-left: 0px;         /* Space between bsk.ie/ and username */
+        }
+
+        .content a {
+            color: #ffffff; /* Link color */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Section -->
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+
+        
+
+        <!-- Text Content Section -->
+        <div class="content">
+            <p>Just share your Bluesky username as</p>
+            
+            <!-- Username Section -->
+            <div class="username-section">
+                <span class="bsk-part">bsk.ie/</span>
+                <span class="username-part">username</span>
+            </div>
+
+            <p>No reg. needed, <a href="#">simple</a> as that :)</p>
+        </div>
+    </div>
+</body>
+</html>
